@@ -29,8 +29,8 @@ def releasing(semaphore):
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s %(message)s')
 
 DATACENTER = "Newark"
-DISTRIBUTION = "CentOS 7"
-KERNEL = "Latest 64 bit"
+DISTRIBUTION = "Ubuntu 16.04 LTS"
+KERNEL = "Latest 64 bit"  # this variable is not used by my hack below
 SSH_PRIVATE_KEY_FILE = os.getenv("HOME") + "/.ssh/id_rsa"
 SSH_PUBLIC_KEY_FILE = os.getenv("HOME") + "/.ssh/id_rsa.pub"
 with open(SSH_PUBLIC_KEY_FILE) as f:
@@ -145,7 +145,7 @@ def launch(client):
 
     datacenter = filter(lambda d: d[u'LOCATION'].lower().find(DATACENTER.lower()) >= 0, datacenters)[0][u'DATACENTERID']
     distribution = filter(lambda d: d[u'LABEL'].lower().find(DISTRIBUTION.lower()) >= 0, distributions)[0][u'DISTRIBUTIONID']
-    kernel = filter(lambda k: k[u'LABEL'].lower().find(str(KERNEL).lower()) >= 0, kernels)[0][u'KERNELID']
+    kernel = 210
 
     running = client.linode_list()
 
